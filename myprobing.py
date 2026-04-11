@@ -13,6 +13,6 @@ mysendsock.set_ttl(1)
 mysendsock.sendto(message,(ip_addr, TRACEROUTE_PORT_NUMBER))
 
 if(myrecvsock.recv_select()):
-    print(myrecvsock.recv_from())
+    print(myrecvsock.recvfrom())
 
 
