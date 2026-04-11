@@ -1,0 +1,32 @@
+utils
+
+先是设置了一堆初始参数，还有一些初始的函数
+什么IPPROTO之类的其实就是SOCKET里面写死的INT
+然后还有一些函数
+hosttonl
+
+hosttons
+分别是主机字符串转换码点的操作，分别是32位和16位
+
+然后
+
+ntop
+
+ntoa
+
+前面加个INTERNET，其实一样的，还是转换网络的码点到ASCII，不过presentation是支持IPV6
+
+然后还有个getbyhostname的东西，是用来进行DNS查询的，用域名去解析IP地址，用来后面去配SOCKET内部的内容（DEST和SRC应该需要）
+
+然后后面就写了一个叫SOCKET的类，其实是一个socket标准库的封装
+然后它的INIT就是要接收一个socket.socket的，然后会把它存到__sock里面
+
+然后MAKE_UDP, MAKE_ICMP之类才是真的，这些是类方法，可以直接构造这么一个对象（靠的是cls函数，内部配好了各种参数的）
+
+然后内部还有一些对socket.socket类设置参数的函数，SET_TTL就是在IP层面设置TTL
+然后sendto需要IP地址还有BYTE之类的，用来发送消息
+然后recv_select,recv_from分别是用来探测是否有消息以及直接接收的
+
+pretty print就是用来根据特定TTL和一个列表-路由器的，然后打出来而已
+
+parse_args是设置命令行需要接收的参数，然后返回一个含有该参数的对象

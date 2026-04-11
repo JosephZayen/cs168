@@ -108,10 +108,11 @@ def traceroute(sendsock: util.Socket, recvsock: util.Socket, ip: str) \
     """
 
     # TODO Add your implementation
-    for ttl in range(1, TRACEROUTE_MAX_TTL+1):
+    
+'''    for ttl in range(1, TRACEROUTE_MAX_TTL+1):
         util.print_result([], ttl)
     return []
-
+'''
 
 if __name__ == '__main__':
     args = util.parse_args()
