@@ -1,7 +1,7 @@
 import util
 
 args = util.parse_args()
-ip_addr = util.gethostbyname(args[0].strip())
+ip_addr = util.gethostbyname(args.host.strip())
 TRACEROUTE_PORT_NUMBER = 33434
 
 message = "hi i wanna fuck u!".encode()
