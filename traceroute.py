@@ -38,7 +38,20 @@ class IPv4:
     dst: str
 
     def __init__(self, buffer: bytes):
-        pass  # TODO
+        array = "".join(format(byte, "08b") for byte in [*buffer])
+        self.version = int(array[0:4],2)
+        self.header_len = int(array[4:8],2)
+        self.tos = int(array[8:16],2)
+        self.length = int(array[16:48],2)
+        self.id = int(array[48:64],2)
+        self.flags = int(array[64:67],2)
+        self.frag_offset = int(array[67:80],2)
+        self.ttl = int(array[80:88],2)
+        self.proto = int(array[88:96],2)
+        self.cksum = int(array[96:112],2)
+        self.src = int(array[112:144],2)
+        self.dest = int(array[144:176],2)
+
 
     def __str__(self) -> str:
         return f"IPv{self.version} (tos 0x{self.tos:x}, ttl {self.ttl}, " + \
@@ -60,7 +73,10 @@ class ICMP:
     cksum: int
 
     def __init__(self, buffer: bytes):
-        pass  # TODO
+        array = "".join(format(byte, "08b") for byte in [*buffer])
+        self.type = int(array[0:16],2)
+        self.code = int(array[16:32],2)
+        self.cksum = int(array[32:48],2)
 
     def __str__(self) -> str:
         return f"ICMP (type {self.type}, code {self.code}, " + \
@@ -79,7 +95,11 @@ class UDP:
     cksum: int
 
     def __init__(self, buffer: bytes):
-        pass  # TODO
+        array = "".join(format(byte, "08b") for byte in [*buffer])
+        self.src_port = int(array[0:16],2)
+        self.dst_port = int(array[16:32],2)
+        self.len = int(array[32:48],2)
+        self.cksum = int(array[48:64],2)  # TODO
 
     def __str__(self) -> str:
         return f"UDP (src_port {self.src_port}, dst_port {self.dst_port}, " + \
