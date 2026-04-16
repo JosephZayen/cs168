@@ -147,3 +147,9 @@ def parse_args():
     parser = argparse.ArgumentParser(prog='cs168 Traceroute')
     parser.add_argument('host')
     return parser.parse_args()
+
+def parse_args_ttl():
+    parser = argparse.ArgumentParser(prog='cs168 Traceroute')
+    parser.add_argument('host')
+    parser.add_argument('ttl')
+    return parser.parse_args()
