@@ -11,7 +11,7 @@ message = "hi!".encode()
 mysendsock = util.Socket.make_udp()
 myrecvsock = util.Socket.make_icmp()
 
-mysendsock.set_ttl(ttl)
+mysendsock.set_ttl(int(ttl))
 mysendsock.sendto(message,(ip_addr, TRACEROUTE_PORT_NUMBER))
 
 
