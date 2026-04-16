@@ -129,6 +129,7 @@ def traceroute(sendsock: util.Socket, recvsock: util.Socket, ip: str) \
 
     # TODO Add your implementation
 
+    final_path = []
     message = "hi!".encode()
     
     for i in range(1, TRACEROUTE_MAX_TTL + 1):
@@ -141,11 +142,14 @@ def traceroute(sendsock: util.Socket, recvsock: util.Socket, ip: str) \
             if(recvsock.recv_select()):
                 router_addr = recvsock.recvfrom()[1][0]
                 if (router_addr not in this_array):
-                    this_array.add(router_addr)  #只取IP地址
+                    this_array.append(router_addr)  #只取IP地址
 
         util.print_result(this_array, i)
+        final_path.append(this_array)
+        if(ip in this_array):
+            break
 
-
+    return final_path
 
 
 #prepare traceroute params
