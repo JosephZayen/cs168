@@ -128,11 +128,37 @@ def traceroute(sendsock: util.Socket, recvsock: util.Socket, ip: str) \
     """
 
     # TODO Add your implementation
+
+    message = "hi!".encode()
     
-'''    for ttl in range(1, TRACEROUTE_MAX_TTL+1):
-        util.print_result([], ttl)
-    return []
-'''
+    for i in range(1, TRACEROUTE_MAX_TTL + 1):
+        sendsock.set_ttl(i)
+
+        this_array = []
+
+        for attempt in range(0, PROBE_ATTEMPT_COUNT):
+            sendsock.sendto(message, (ip, TRACEROUTE_PORT_NUMBER))
+            if(recvsock.recv_select()):
+                router_addr = recvsock.recvfrom()[1][0]
+                if (router_addr not in this_array):
+                    this_array.add(router_addr)  #只取IP地址
+
+        util.print_result(this_array, i)
+
+
+
+
+#prepare traceroute params
+args = util.parse_args()
+ip_addr = util.gethostbyname(args.host.strip())
+
+mysendsock = util.Socket.make_udp()
+myrecvsock = util.Socket.make_icmp()
+
+
+
+
+
 
 if __name__ == '__main__':
     args = util.parse_args()

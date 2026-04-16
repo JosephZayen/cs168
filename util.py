@@ -142,6 +142,7 @@ def print_result(routers: list[str], ttl: int):
             print(f"{preamble} {router}")
 
 
+
 def parse_args():
     parser = argparse.ArgumentParser(prog='cs168 Traceroute')
     parser.add_argument('host')

@@ -13,11 +13,21 @@ myrecvsock = util.Socket.make_icmp()
 mysendsock.set_ttl(ttl)
 mysendsock.sendto(message,(ip_addr, TRACEROUTE_PORT_NUMBER))
 
+
+
+
+
+
+
 if(myrecvsock.recv_select()):
     raw_bytes, data_tuple = myrecvsock.recvfrom()
     hex_bytes = raw_bytes.hex()
     print(hex_bytes)
     
+
+
+
+
 class UDP:
     src_port:int
     dst_port:int
