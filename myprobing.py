@@ -4,7 +4,7 @@ import util
 args = util.parse_args_ttl()
 ip_addr = util.gethostbyname(args.host.strip())
 TRACEROUTE_PORT_NUMBER = 33434
-ttl = util.args.ttl
+ttl = args.ttl
 
 message = "hi!".encode()
 
